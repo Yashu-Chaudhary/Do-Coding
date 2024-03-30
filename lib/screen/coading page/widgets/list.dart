@@ -16,7 +16,7 @@ class PointList extends StatelessWidget {
           return ListTile(
             
             leading: CircleAvatar(
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.grey[600]!.withOpacity(0.02),
               child: Container(
                 height: 4,
                 width: 4,
@@ -25,7 +25,7 @@ class PointList extends StatelessWidget {
                     color: Colors.black),
               ),
             ),
-            title: Text(points[index]),
+            title: Text(points[index], style: const TextStyle(color: Colors.grey),),
           );
         },
       ),

@@ -1,7 +1,6 @@
 import 'package:coading_area/screen/coading%20page/coading_page.dart';
 import 'package:coading_area/screen/home/widgets/topic_container.dart';
 import 'package:coading_area/util/constants/string_texts.dart';
-import 'package:coading_area/util/constants/string_texts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +15,7 @@ class Home extends StatelessWidget {
         child: Container(
           height: device.size.height,
           width: device.size.width,
-          decoration: BoxDecoration(color: Colors.black54.withOpacity(0.7)),
+          decoration: BoxDecoration(color: Colors.white.withOpacity(0.7)),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
@@ -29,11 +28,11 @@ class Home extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white)),
+                            color: Colors.black)),
                     Icon(
                       Icons.more_horiz,
                       size: 30,
-                      color: Colors.white,
+                      color: Colors.black,
                     )
                   ],
                 ),
@@ -52,7 +51,7 @@ class Home extends StatelessWidget {
                             subTitle: PTexts.map[index]['subTitel'] ?? "",
                             onPressed: () => Get.to(
                               () => CoadingPage(
-                                  dis: PTexts.map[index]['discription']),
+                                  dis: PTexts.map[index]['discription'],title:PTexts.map[index]['title'] ?? "" ,),
                             ),
                           ),
                         );

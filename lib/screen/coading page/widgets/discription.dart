@@ -1,7 +1,8 @@
+
 import 'package:flutter/material.dart';
 
-class PHeadingText extends StatelessWidget {
-  const PHeadingText({
+class PDiscription extends StatelessWidget {
+  const PDiscription({
     super.key,
     required this.text,
   });
@@ -10,8 +11,7 @@ class PHeadingText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      overflow: TextOverflow.ellipsis,
-      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+      style: const TextStyle(color: Colors.grey, fontSize: 18),
     );
   }
 }

@@ -11,13 +11,12 @@ class PBlackContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     MediaQueryData device = MediaQuery.of(context);
     return Container(
-      height: 40,
       width: device.size.width,
       margin: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(color: Colors.black.withOpacity(0.6)),
       child: Padding(
         padding: const EdgeInsets.all(12),
-        child: Text(text),
+        child: Text(text, style: const TextStyle(color: Colors.white),),
       ),
     );
   }
