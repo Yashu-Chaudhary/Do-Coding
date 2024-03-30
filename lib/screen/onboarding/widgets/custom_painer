@@ -1,26 +1,18 @@
-class SCurvePainter extends CustomPainter {
+class PSShapePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
+      ..color = Colors.blue
       ..style = PaintingStyle.fill;
 
     final path = Path();
-    path.moveTo(0, size.height / 2);
-    path.cubicTo(
-        size.width / 4, size.height / 2 - 50, // Control point 1
-        3 * size.width / 4, size.height / 2 + 50, // Control point 2
-        size.width, size.height / 2); // End point
-
-    final gradient = LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: [Colors.blue, Colors.white],
-    );
-
-    paint.shader = gradient.createShader(Rect.fromPoints(
-      Offset(0, 0),
-      Offset(0, size.height),
-    ));
+    path.moveTo(0, size.height);
+    path.lineTo(0, size.height * 0.75);
+    path.quadraticBezierTo(
+        size.width / 4, size.height * 0.6, size.width / 2, size.height * 0.75);
+    path.quadraticBezierTo(
+        3 * size.width / 4, size.height * 0.9, size.width, size.height * 0.75);
+    path.lineTo(size.width, size.height);
 
     canvas.drawPath(path, paint);
   }
