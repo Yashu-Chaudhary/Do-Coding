@@ -1,4 +1,5 @@
 class PImages {
-  // onBoarding logo
-  static const String onBoardingLogo = 'assets/images/logo.gif';
+  // Practice page image
+  static const String ifelse = 'assets/images/ifelse.png';
+
 }

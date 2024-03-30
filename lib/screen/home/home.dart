@@ -9,29 +9,66 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, String>> map = [{ 
+      'title':'Java I-Else',
+      'subTitel': 'Easy, Java(Basic), Max Score: 10, Success Rate: 91.32%'
+
+    },
+    { 
+      'title':'Java I-Else',
+      'subTitel': 'Easy, Java '
+
+    }];
+    final deviceWidth = MediaQuery.of(context).size.width;
+    final deviceheight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 30),
-              PTopicContainer(
-                title: PTexts.p1,
-                subTitle: PTexts.arrayForBeginners,
-                onPressed: () => Get.to(
-                  () => const CoadingPage(),
+        child: Container(
+          height: deviceheight,
+          width: deviceWidth,
+          decoration: BoxDecoration(color: Colors.black54.withOpacity(0.7)),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 30),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(PTexts.doCoading,
+                        style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)),
+                    Icon(
+                      Icons.more_horiz,
+                      size: 30,
+                      color: Colors.white,
+                    )
+                  ],
                 ),
-              ),
-              const SizedBox(height: 12),
-              PTopicContainer(
-                title: PTexts.p2,
-                subTitle: PTexts.arrayForIntermediates,
-                onPressed: () => Get.to(
-                  () => const CoadingPage(),
+                const SizedBox(height: 20),
+                SizedBox(
+                  height: deviceheight * 0.82,
+                  width: deviceWidth,
+                  child: ListView.builder(
+                      itemCount: map.length,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: PTopicContainer(
+                              title: map[index]['title']??"",
+                              subTitle: map[index]['subTitel']??"",
+                              onPressed: () =>
+                                  Get.to(() => const CoadingPage())),
+                        );
+                      }),
                 ),
-              )
-            ],
+                const SizedBox(height: 12),
+                
+              ],
+            ),
           ),
         ),
       ),
