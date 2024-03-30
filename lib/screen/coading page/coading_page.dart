@@ -2,16 +2,29 @@ import 'package:coading_area/screen/coading%20page/widgets/blace_container_for_s
 import 'package:coading_area/screen/coading%20page/widgets/heading_text.dart';
 import 'package:coading_area/screen/coading%20page/widgets/list.dart';
 import 'package:coading_area/util/constants/images.dart';
-import 'package:coading_area/util/constants/string_texts.dart';
+ 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
-import 'package:flutter_highlight/themes/monokai-sublime.dart';
 import 'package:highlight/languages/java.dart';
 
-class CoadingPage extends StatelessWidget {
-  const CoadingPage({super.key});
+class CoadingPage extends StatefulWidget {
+   CoadingPage({super.key, required this.dis});
+  Map<String, dynamic> dis;
 
+  @override
+  State<CoadingPage> createState() => _CoadingPageState();
+}
+
+class _CoadingPageState extends State<CoadingPage> {
+  List<String> list=[];
+  @override
+  void initState() {
+    
+    for (var i = 0; i < 4; i++) {
+      list.add(widget.dis['TaskList']?[i]??"");
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,61 +43,58 @@ class CoadingPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const PHeadingText(text: 'Problem :'),
-                const PDiscription(text: PTexts.problem),
+                PDiscription(text: widget.dis['Problem']??''),
                 const SizedBox(height: 12),
                 const SizedBox(
                   child: Image(image: AssetImage(PImages.ifelse)),
                 ),
                 const SizedBox(height: 12),
                 const PHeadingText(text: 'Task :'),
-                const PDiscription(text: PTexts.given),
-                const PointList(
-                  points: [
-                    'If n is odd, print Weird',
-                    'If n is even and in the inclusive range of 2 to 5, print Not Weird',
-                    'If n is even and in the inclusive range of 6 to 20, print Weird',
-                    'If n is even and greater than 20, print Not Weird'
-                  ],
+                PDiscription(text: widget.dis['Task']??''),
+                 PointList(
+                  
+                  points:  list
                 ),
-                const PDiscription(
+                 PDiscription(
                   text:
-                      'Complete the stub code provided in your editor to print whether or not  is weird.',
+                      widget.dis['TaskBelow'],
                 ),
                 const SizedBox(height: 12),
                 const PHeadingText(text: 'Input Format :'),
-                const PDiscription(
-                    text: 'A single line containing a positive integer,n.'),
+                 PDiscription(
+                    text: widget.dis['InputFormat']??''),
                 const SizedBox(height: 12),
                 const PHeadingText(text: 'Constraints :'),
-                const PDiscription(text: '1<=n<=100'),
+                 PDiscription(text: widget.dis['Constraints']??''),
                 const SizedBox(height: 12),
                 const PHeadingText(text: 'Output Format :'),
-                const PDiscription(
+               PDiscription(
                     text:
-                        'Print Weird if the number is weird; otherwise, print Not Weird.'),
+                        widget.dis['OutputFormat']??''),
                 const PHeadingText(text: 'Sample Input 0'),
-                const PBlackContainer(text: '3'),
+                 PBlackContainer(text: widget.dis['SampleInput0']??''),
                 const PHeadingText(text: 'Sample Output 0'),
-                const PBlackContainer(text: 'Weird'),
+                 PBlackContainer(text: widget.dis['SampleOutput0']??''),
                 const PHeadingText(text: 'Sample Input 1'),
-                const PBlackContainer(text: '24'),
+                 PBlackContainer(text: widget.dis['SampleInput1']??''),
                 const PHeadingText(text: 'Sample Output 1'),
-                const PBlackContainer(text: 'Not Weird'),
+                 PBlackContainer(text: widget.dis['SampleOutput1']??''),
                 const PHeadingText(text: 'Explanation'),
-                const PDiscription(text: 'Sample Case 0: n = 3'),
-                const PDiscription(
+                PDiscription(text: widget.dis['exText0']??''),
+               PDiscription(
                     text:
-                        'n is odd and odd numbers are weird, so we print Weird.'),
-                const PDiscription(text: 'Sample Case 1: n = 24'),
-                const PDiscription(
+                        widget.dis['exText1']??''),
+               PDiscription(text: widget.dis['exText2']??''),
+                 PDiscription(
                     text:
-                        "n > 20 and n is even, so it isn't weird. Thus, we print Not Weird."),
+                        widget.dis['exText3']??''),
                 const SizedBox(height: 500, child: CodeEditor()),
                 const SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    ElevatedButton(onPressed: () {}, child: const Text('Submit')),
+                    ElevatedButton(
+                        onPressed: () {}, child: const Text('Submit')),
                     const SizedBox(width: 12),
                     ElevatedButton(onPressed: () {}, child: const Text('Run'))
                   ],
@@ -114,8 +124,6 @@ class CodeEditor extends StatelessWidget {
   }
 }
 
-
-
 class PDiscription extends StatelessWidget {
   const PDiscription({
     super.key,
@@ -130,4 +138,3 @@ class PDiscription extends StatelessWidget {
     );
   }
 }
-

@@ -10,9 +10,11 @@ class PointList extends StatelessWidget {
     return SizedBox(
       height: 250,
       child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: points.length,
         itemBuilder: (context, index) {
           return ListTile(
+            
             leading: CircleAvatar(
               backgroundColor: Colors.white,
               child: Container(
